@@ -1,92 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context=".ActividadPreguntas"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_gravity="center"
-    android:gravity="center"
-    android:background="@color/colorback">
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:fillViewport="true"
+    tools:context=".ActividadPreguntas">
 
-    <TextView
-        android:id="@+id/titulo"
+    <RelativeLayout
+        android:id="@+id/background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:text="ACTIVIDAD PREGUNTAS"
-        android:textSize="20dp"
-        android:textColor="#fff"
-        android:layout_marginTop="@android:dimen/dialog_min_width_major"/>
+        android:layout_gravity="center"
+        android:background="@color/colorback"
+        android:gravity="center">
 
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/titulo"
-        android:id="@+id/respuestas"
-        android:gravity="left"
-        android:foregroundGravity="center"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:outlineAmbientShadowColor="#fff"
-        android:outlineSpotShadowColor="#fff"
-        android:paddingTop="@android:dimen/notification_large_icon_height"
-        android:layout_marginBottom="100dp">
-        <RadioButton
+        <TextView
+            android:id="@+id/titulo_preguntas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:gravity="center"
+            android:text="ACTIVIDAD PREGUNTAS"
             android:textColor="#fff"
-            android:id="@+id/pregunta1"
-            android:text="1"/>
-        <RadioButton
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/pregunta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/pregunta2"
+            android:layout_below="@+id/titulo_preguntas"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="Pregunta: "
             android:textColor="#fff"
-            android:text="2"/>
-        <RadioButton
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/puntos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/pregunta"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="Puntos: "
             android:textColor="#fff"
-            android:id="@+id/pregunta3"
-            android:text="3"/>
-        <RadioButton
+            android:textSize="12dp" />
+
+
+        <RadioGroup
+            android:id="@+id/respuestas_preguntas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/puntos"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="50dp"
+            android:foregroundGravity="center"
+            android:gravity="left"
+            android:outlineAmbientShadowColor="#fff"
+            android:outlineSpotShadowColor="#fff"
+            android:paddingTop="50dp">
+
+            <RadioButton
+                android:id="@+id/pregunta1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textColor="#fff" />
+
+            <RadioButton
+                android:id="@+id/pregunta2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:textColor="#fff" />
+
+            <RadioButton
+                android:id="@+id/pregunta3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:textColor="#fff" />
+
+            <RadioButton
+                android:id="@+id/pregunta4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4"
+                android:textColor="#fff" />
+
+            <RadioButton
+                android:id="@+id/pregunta5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:textColor="#fff" />
+        </RadioGroup>
+
+
+        <Button
+            android:id="@+id/boton_eleccion_preguntas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/pregunta4"
-            android:textColor="#fff"
-            android:text="4"/>
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:id="@+id/pregunta5"
-            android:text="5"/>
-    </RadioGroup>
+            android:layout_below="@+id/respuestas_preguntas"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorcorrect"
+            android:hint="RESPONDER" />
 
+        <ImageView
+            android:id="@+id/imagen_preguntas"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/boton_eleccion_preguntas"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:background="@mipmap/ic_question"
+            android:paddingTop="100px"
+            />
+    </RelativeLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/boton_eleccion"
-        android:layout_below="@+id/respuestas"
-        android:layout_centerHorizontal="true"
-        android:hint="RESPONDER"
-        android:background="@color/colorcorrect"/>
-
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/boton_eleccion"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="100px"
-        android:layout_marginTop="50dp"
-        android:visibility="gone"
-        android:background="@mipmap/ic_incorrect"
-
-        />
-
-</RelativeLayout>
+</ScrollView>

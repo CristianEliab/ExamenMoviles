@@ -19,13 +19,13 @@
         android:id="@+id/boton_accion"
         android:padding="15dp"
         android:paddingBottom="20dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_marginBottom="@android:dimen/app_icon_size"
         android:layout_marginRight="@android:dimen/app_icon_size"
         android:layout_alignRight="@+id/map"
         android:layout_alignBottom="@+id/map"
-        android:textColorHint="@android:color/white"
+        android:textColor="@android:color/white"
         android:background="#0825F4"
-        android:hint="Activar"/>
+        android:text="Activar"/>
 
 </RelativeLayout>

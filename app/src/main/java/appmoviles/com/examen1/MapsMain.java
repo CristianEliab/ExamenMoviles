@@ -192,7 +192,7 @@ public class MapsMain extends FragmentActivity implements OnMapReadyCallback, Go
         mMap.setOnMyLocationClickListener(this);
         mMap.setOnMarkerClickListener(this);
 
-        manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 3000, 1, new LocationListener() {
+        manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 500, 1, new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 LatLng posicion = new LatLng(location.getLatitude(), location.getLongitude());
@@ -208,9 +208,8 @@ public class MapsMain extends FragmentActivity implements OnMapReadyCallback, Go
                 } else {
                     concurrentMarker.position(posicion);
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(posicion));
-                    encontrarRectangulo(posicion);
                 }
-
+                encontrarRectangulo(posicion);
             }
 
             @Override

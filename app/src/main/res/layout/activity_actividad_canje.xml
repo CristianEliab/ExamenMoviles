@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context=".ActividadPreguntas"
+    tools:context=".ActividadCanje"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_gravity="center"
     android:gravity="center"
@@ -20,7 +20,7 @@
         android:text="ACTIVIDAD CANJE"
         android:textSize="20dp"
         android:textColor="#fff"
-        android:layout_marginTop="@android:dimen/dialog_min_width_major"/>
+        android:layout_marginTop="80dp"/>
 
     <TextView
         android:id="@+id/puntaje"
@@ -45,7 +45,7 @@
         android:layout_marginRight="20dp"
         android:outlineAmbientShadowColor="#fff"
         android:outlineSpotShadowColor="#fff"
-        android:paddingTop="@android:dimen/notification_large_icon_height"
+        android:paddingTop="80dp"
         android:layout_marginBottom="100dp">
         <RadioButton
             android:layout_width="wrap_content"
