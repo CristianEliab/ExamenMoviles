@@ -15,10 +15,12 @@
         android:background="#fff"
         android:layout_marginBottom="20dp"
         android:padding="10dp">
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/exam"
+            android:text="NERDGO"
+            android:textSize="80dp"
+            android:textColor="@color/colorcorrect"
             android:paddingTop="15dp"
             />
     </LinearLayout>

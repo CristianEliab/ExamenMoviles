@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="Puntaje: "
+        android:text="Puntos: "
         android:textSize="18dp"
         android:textColor="#fff"
         android:layout_below="@+id/titulo"
@@ -90,14 +90,12 @@
         android:background="@color/colorcorrect"/>
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:id="@+id/return_canje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/boton_eleccion"
+        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
-        android:paddingTop="100px"
-        android:layout_marginTop="50dp"
-        android:visibility="gone"
-        android:background="@mipmap/ic_incorrect"
-        />
+        android:background="@mipmap/ic_return_" />
 
 </RelativeLayout>

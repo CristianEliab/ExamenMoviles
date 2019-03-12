@@ -103,14 +103,37 @@
         </RadioGroup>
 
 
+
+
         <Button
             android:id="@+id/boton_eleccion_preguntas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/respuestas_preguntas"
-            android:layout_centerHorizontal="true"
             android:background="@color/colorcorrect"
-            android:hint="RESPONDER" />
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:hint="RESPONDER"
+            />
+
+        <ImageView
+            android:id="@+id/refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/boton_eleccion_preguntas"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="80dp"
+            android:background="@mipmap/ic_refresh" />
+
+        <ImageView
+            android:id="@+id/return_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/boton_eleccion_preguntas"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="230dp"
+            android:background="@mipmap/ic_return_" />
+
 
         <ImageView
             android:id="@+id/imagen_preguntas"
@@ -119,8 +142,9 @@
             android:layout_below="@+id/boton_eleccion_preguntas"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
-            android:background="@mipmap/ic_question"
+            android:background="@mipmap/ic_problem"
             android:paddingTop="100px"
+            android:visibility="gone"
             />
     </RelativeLayout>
 

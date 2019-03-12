@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -28,7 +29,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-public class MapsMain extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMyLocationClickListener, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMapClickListener, View.OnClickListener {
+public class MapsMain extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener, View.OnClickListener, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
 
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
@@ -56,10 +57,10 @@ public class MapsMain extends FragmentActivity implements OnMapReadyCallback, Go
 
 
     // Edificio M
-    private static final LatLng RECT_4_1 = new LatLng(3.342641,-76.530508);
-    private static final LatLng RECT_4_2 = new LatLng(3.342700,-76.530063);
-    private static final LatLng RECT_4_3 = new LatLng(3.342394,-76.530486);
-    private static final LatLng RECT_4_4 = new LatLng(3.342416,-76.530079);
+    private static final LatLng RECT_4_1 = new LatLng(3.342641, -76.530508);
+    private static final LatLng RECT_4_2 = new LatLng(3.342700, -76.530063);
+    private static final LatLng RECT_4_3 = new LatLng(3.342394, -76.530486);
+    private static final LatLng RECT_4_4 = new LatLng(3.342416, -76.530079);
 
     private static final float DEFAULT_ZOOM = 18;
     private Boolean mLocationPermissionsGranted = false;
@@ -71,6 +72,8 @@ public class MapsMain extends FragmentActivity implements OnMapReadyCallback, Go
     boolean encontro_edificio = false;
     boolean dificultad = false;
     boolean encontro_biblioteca = false;
+    private TextView puntaje;
+    private int puntaje_numero;
 
 
     @Override
@@ -80,12 +83,16 @@ public class MapsMain extends FragmentActivity implements OnMapReadyCallback, Go
         manager = (LocationManager) getSystemService(LOCATION_SERVICE);
         getLocationPermission();
         visible = false;
+        puntaje_numero = 1000;
         metodos();
     }
 
     private void metodos() {
         boton_acciones = findViewById(R.id.boton_accion);
         boton_acciones.setOnClickListener(this);
+
+        puntaje = findViewById(R.id.puntaje_global);
+        puntaje.setText("Puntaje: " + puntaje_numero);
     }
 
     private void contruirRectangulos() {
@@ -187,10 +194,10 @@ public class MapsMain extends FragmentActivity implements OnMapReadyCallback, Go
         mMap = googleMap;
 
         mMap.setOnMapClickListener(this);
+        mMap.setOnMarkerClickListener(this);
         mMap.setMyLocationEnabled(true);
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);
-        mMap.setOnMarkerClickListener(this);
 
         manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 500, 1, new LocationListener() {
             @Override
@@ -237,70 +244,66 @@ public class MapsMain extends FragmentActivity implements OnMapReadyCallback, Go
     }
 
     private void encontrarEdificioM(LatLng posicion) {
-        if(posicion.latitude <= RECT_4_1.latitude
+        if (posicion.latitude <= RECT_4_1.latitude
                 && posicion.latitude >= RECT_4_4.latitude
                 && posicion.longitude >= RECT_4_1.longitude
-                && posicion.longitude <= RECT_4_4.longitude){
-            encontro_edificio = true;
+                && posicion.longitude <= RECT_4_4.longitude) {
+            encontro_biblioteca = true;
             dificultad = true;
         }
-        if(encontro_edificio){
+        if (encontro_biblioteca) {
             boton_acciones.setVisibility(View.VISIBLE);
-            boton_acciones.setText("Preguntas");
-        }
-        else{
+            boton_acciones.setText("Canjear");
+        } else {
             boton_acciones.setVisibility(View.GONE);
         }
     }
 
     private void encontrarEdificioC(LatLng posicion) {
-        if(posicion.latitude <= RECT_3_1.latitude
+        if (posicion.latitude <= RECT_3_1.latitude
                 && posicion.latitude >= RECT_3_4.latitude
                 && posicion.longitude >= RECT_3_1.longitude
-                && posicion.longitude <= RECT_3_4.longitude){
+                && posicion.longitude <= RECT_3_4.longitude) {
             encontro_edificio = true;
             dificultad = true;
         }
-        if(encontro_edificio){
-           boton_acciones.setVisibility(View.VISIBLE);
-           boton_acciones.setText("Preguntas");
-        }
-        else{
+        if (encontro_edificio) {
+            boton_acciones.setVisibility(View.VISIBLE);
+            boton_acciones.setText("Preguntas");
+        } else {
             boton_acciones.setVisibility(View.GONE);
         }
     }
 
     private void encontrarCentral(LatLng posicion) {
         encontro_edificio = false;
-        if(posicion.latitude <= RECT_2_1.latitude
+        if (posicion.latitude <= RECT_2_1.latitude
                 && posicion.latitude >= RECT_2_4.latitude
                 && posicion.longitude >= RECT_2_1.longitude
-                && posicion.longitude <= RECT_2_4.longitude){
+                && posicion.longitude <= RECT_2_4.longitude) {
             encontro_edificio = true;
             dificultad = false;
         }
-        if(encontro_edificio){
+        if (encontro_edificio) {
             boton_acciones.setVisibility(View.VISIBLE);
             boton_acciones.setText("Preguntas");
-        }
-        else{
+        } else {
             boton_acciones.setVisibility(View.GONE);
         }
     }
 
     private void encontrarBiblioteca(LatLng posicion) {
         encontro_biblioteca = false;
-        if(posicion.latitude <= RECT_1_1.latitude
+        if (posicion.latitude <= RECT_1_1.latitude
                 && posicion.latitude >= RECT_1_4.latitude
                 && posicion.longitude >= RECT_1_1.longitude
-                && posicion.longitude <= RECT_1_4.longitude){
+                && posicion.longitude <= RECT_1_4.longitude) {
             encontro_biblioteca = true;
         }
-        if(encontro_biblioteca){
+        if (encontro_biblioteca) {
             boton_acciones.setVisibility(View.VISIBLE);
             boton_acciones.setText("Canjear");
-        }
-        else{
+        } else {
             boton_acciones.setVisibility(View.GONE);
         }
     }
@@ -361,18 +364,6 @@ public class MapsMain extends FragmentActivity implements OnMapReadyCallback, Go
         return false;
     }
 
-    @Override
-    public void onMyLocationClick(@NonNull Location location) {
-        LatLng posicion = new LatLng(location.getLatitude(), location.getLongitude());
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(posicion, DEFAULT_ZOOM));
-
-    }
-
-    @Override
-    public boolean onMyLocationButtonClick() {
-        Toast.makeText(this, "MyLocation clicked", Toast.LENGTH_SHORT).show();
-        return false;
-    }
 
     @Override
     public void onMapClick(LatLng latLng) {
@@ -381,19 +372,45 @@ public class MapsMain extends FragmentActivity implements OnMapReadyCallback, Go
 
     @Override
     public void onClick(View view) {
-        if(encontro_edificio){
+        if (encontro_edificio) {
             Intent i = new Intent(MapsMain.this, ActividadPreguntas.class);
-            if(dificultad){
-                i.putExtra("dificultad","100");
-            }else{
-                i.putExtra("dificultad","1");
+            if (dificultad) {
+                i.putExtra("dificultad", "100");
+                i.putExtra("PUNTAJE", "" + puntaje_numero);
+            } else {
+                i.putExtra("dificultad", "1");
+                i.putExtra("PUNTAJE", "" + puntaje_numero);
             }
-            startActivity(i);
+            startActivityForResult(i, 2);
         }
-        if(encontro_biblioteca){
+        if (encontro_biblioteca) {
             Intent i = new Intent(MapsMain.this, ActividadCanje.class);
-            startActivity(i);
+            i.putExtra("PUNTAJE", "" + puntaje_numero);
+            startActivityForResult(i, 2);
         }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // check if the request code is same as what is passed  here it is 2
+        if (requestCode == 2) {
+            String message = data.getStringExtra("PUNTAJE_GLOBAL");
+            puntaje_numero = Integer.parseInt(message);
+            puntaje.setText("");
+            puntaje.setText("Puntaje: " + message);
+        }
+    }
+
+    @Override
+    public boolean onMyLocationButtonClick() {
+        return false;
+    }
+
+    @Override
+    public void onMyLocationClick(@NonNull Location location) {
+
     }
 }
 

@@ -13,19 +13,37 @@
         android:layout_height="match_parent"
         tools:context=".MapsMain" />
 
-    <Button
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/boton_accion"
-        android:padding="15dp"
-        android:paddingBottom="20dp"
-        android:visibility="gone"
-        android:layout_marginBottom="@android:dimen/app_icon_size"
-        android:layout_marginRight="@android:dimen/app_icon_size"
-        android:layout_alignRight="@+id/map"
-        android:layout_alignBottom="@+id/map"
-        android:textColor="@android:color/white"
-        android:background="#0825F4"
-        android:text="Activar"/>
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Puntaje: "
+            android:textColor="@color/colorblack"
+            android:id="@+id/puntaje_global"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="60dp"
+            android:layout_alignParentTop="true"
+            android:padding="10dp"
+            android:gravity="center|top"
+            android:background="@color/color_gris" />
+
+        <Button
+            android:id="@+id/boton_accion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:background="#0825F4"
+            android:visibility="gone"
+            android:text="Activar"
+            android:textColor="@android:color/white" />
+
+    </RelativeLayout>
+
+
 
 </RelativeLayout>

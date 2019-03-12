@@ -7,4 +7,6 @@
     <color name="colorback2">#65B1F4</color>
     <color name="colorcorrect">#70F768</color>
     <color name="colorincorrect">#F47665</color>
+    <color name="colorblack">#000</color>
+    <color name="color_gris">#D1CFCE</color>
 </resources>
