@@ -86,15 +86,15 @@ public class ActividadCanje extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        if(v.equals(return_)){
+        if (v.equals(return_)) {
             Intent intent = new Intent();
             intent.putExtra("PUNTAJE_GLOBAL", "" + variable_puntos);
             setResult(2, intent);
             finish();//finishing activity
-        }else{
+        } else {
             int radioButtonID = grupoArticulos.getCheckedRadioButtonId();
             RadioButton radioButton = grupoArticulos.findViewById(radioButtonID);
-            if(radioButton != null){
+            if (radioButton != null) {
                 String respuesta_cliente = radioButton.getText().toString();
                 //
                 obtenerPuntos(respuesta_cliente);
@@ -104,34 +104,53 @@ public class ActividadCanje extends AppCompatActivity implements View.OnClickLis
                 ((Dialogo) dialog).inputvalue = respuesta_cliente;
                 ((Dialogo) dialog).puntos = variable_puntos;
                 dialog.show(getSupportFragmentManager(), "MyCustomDialog");
-            }
-          else{
+            } else {
                 Toast.makeText(this, "Select one product, please!", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     private void obtenerPuntos(String respuesta_cliente) {
-        switch (respuesta_cliente){
+        switch (respuesta_cliente) {
             case NOMBRE_ARTICULO_1:
-                variable_puntos = variable_puntos - VALOR_ARTICULO_1;
-                puntos.setText("Score: " +variable_puntos);
+                if (variable_puntos < VALOR_ARTICULO_1) {
+                    Toast.makeText(this, "You don't have the necessary points!", Toast.LENGTH_SHORT).show();
+                } else {
+                    variable_puntos = variable_puntos - VALOR_ARTICULO_1;
+                    puntos.setText("Score: " + variable_puntos);
+                }
                 break;
             case NOMBRE_ARTICULO_2:
-                variable_puntos = variable_puntos - VALOR_ARTICULO_2;
-                puntos.setText("Score: " +variable_puntos);
+                if (variable_puntos < VALOR_ARTICULO_2) {
+                    Toast.makeText(this, "You don't have the necessary points!", Toast.LENGTH_SHORT).show();
+                } else {
+                    variable_puntos = variable_puntos - VALOR_ARTICULO_2;
+                    puntos.setText("Score: " + variable_puntos);
+                }
                 break;
             case NOMBRE_ARTICULO_3:
-                variable_puntos = variable_puntos - VALOR_ARTICULO_3;
-                puntos.setText("Score: " +variable_puntos);
+                if (variable_puntos < VALOR_ARTICULO_3) {
+                    Toast.makeText(this, "You don't have the necessary points!", Toast.LENGTH_SHORT).show();
+                } else {
+                    variable_puntos = variable_puntos - VALOR_ARTICULO_3;
+                    puntos.setText("Score: " + variable_puntos);
+                }
                 break;
             case NOMBRE_ARTICULO_4:
-                variable_puntos = variable_puntos - VALOR_ARTICULO_4;
-                puntos.setText("Score: " +variable_puntos);
+                if (variable_puntos < VALOR_ARTICULO_4) {
+                    Toast.makeText(this, "You don't have the necessary points!", Toast.LENGTH_SHORT).show();
+                } else {
+                    variable_puntos = variable_puntos - VALOR_ARTICULO_4;
+                    puntos.setText("Score: " + variable_puntos);
+                }
                 break;
             case NOMBRE_ARTICULO_5:
-                variable_puntos = variable_puntos - VALOR_ARTICULO_5;
-                puntos.setText("Score: " +variable_puntos);
+                if (variable_puntos < VALOR_ARTICULO_5) {
+                    Toast.makeText(this, "You don't have the necessary points!", Toast.LENGTH_SHORT).show();
+                } else {
+                    variable_puntos = variable_puntos - VALOR_ARTICULO_5;
+                    puntos.setText("Score: " + variable_puntos);
+                }
                 break;
         }
     }

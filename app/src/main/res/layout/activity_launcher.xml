@@ -21,7 +21,7 @@
             android:text="NERDGO"
             android:textSize="80dp"
             android:textColor="@color/colorcorrect"
-            android:paddingTop="15dp"
+            android:paddingTop="50dp"
             />
     </LinearLayout>
 

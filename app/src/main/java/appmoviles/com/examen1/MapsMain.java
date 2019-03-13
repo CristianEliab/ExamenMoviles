@@ -257,12 +257,12 @@ public class MapsMain extends FragmentActivity implements OnMapReadyCallback, Go
                 && posicion.latitude >= RECT_4_4.latitude
                 && posicion.longitude >= RECT_4_1.longitude
                 && posicion.longitude <= RECT_4_4.longitude) {
-            encontro_edificio = true;
-            dificultad = false;
+            encontro_biblioteca = true;
+            dificultad = true;
         }
-        if (encontro_edificio) {
+        if (encontro_biblioteca) {
             boton_acciones.setVisibility(View.VISIBLE);
-            boton_acciones.setText("Questions");
+            boton_acciones.setText("Exchange");
         } else {
             boton_acciones.setVisibility(View.GONE);
         }
