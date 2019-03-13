@@ -266,9 +266,14 @@ public class ActividadPreguntas extends AppCompatActivity implements View.OnClic
         } else {
             int radioButtonID = grupoPreguntas.getCheckedRadioButtonId();
             RadioButton radioButton = grupoPreguntas.findViewById(radioButtonID);
+
+            DecimalFormat format = new DecimalFormat();
+            format.setMaximumFractionDigits(1);
+
+            String respuesta_formato = format.format(respuesta_correcta);
             String respuesta_cliente = radioButton.getText().toString();
 
-            if (respuesta_cliente.equals(respuesta_correcta + "")) {
+            if (respuesta_cliente.equals(respuesta_formato)) {
                 configuracionesAcerto();
                 calcularPuntaje();
             } else {
@@ -283,6 +288,17 @@ public class ActividadPreguntas extends AppCompatActivity implements View.OnClic
     private void configuracionNormal() {
         relativeLayout.setBackgroundColor(getResources().getColor(R.color.colorback));
         eleccion.setBackgroundColor(getResources().getColor(R.color.colorcorrect));
+        pregunta1.setTextColor(getResources().getColor(R.color.color_white));
+        pregunta2.setTextColor(getResources().getColor(R.color.color_white));
+        pregunta3.setTextColor(getResources().getColor(R.color.color_white));
+        pregunta4.setTextColor(getResources().getColor(R.color.color_white));
+        pregunta5.setTextColor(getResources().getColor(R.color.color_white));
+        TextView titulo = findViewById(R.id.titulo_preguntas);
+        titulo.setTextColor(getResources().getColor(R.color.color_white));
+        TextView pregunta = findViewById(R.id.pregunta);
+        pregunta.setTextColor(getResources().getColor(R.color.color_white));
+        TextView puntos = findViewById(R.id.puntos);
+        puntos.setTextColor(getResources().getColor(R.color.color_white));
     }
 
     private void desbloquearRespuesta() {
@@ -335,4 +351,13 @@ public class ActividadPreguntas extends AppCompatActivity implements View.OnClic
         finish();//finishing activity
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

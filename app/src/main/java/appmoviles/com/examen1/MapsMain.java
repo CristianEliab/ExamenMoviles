@@ -3,11 +3,13 @@ package appmoviles.com.examen1;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -76,14 +78,21 @@ public class MapsMain extends FragmentActivity implements OnMapReadyCallback, Go
     private int puntaje_numero;
 
 
+    private SharedPreferences myPreferences;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps_main);
         manager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        myPreferences
+                = PreferenceManager.getDefaultSharedPreferences(MapsMain.this);
+
         getLocationPermission();
         visible = false;
-        puntaje_numero = 0;
+        puntaje_numero = myPreferences.getInt("SCORE", 0);
         metodos();
     }
 
@@ -411,6 +420,20 @@ public class MapsMain extends FragmentActivity implements OnMapReadyCallback, Go
     @Override
     public void onMyLocationClick(@NonNull Location location) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SharedPreferences.Editor myEditor = myPreferences.edit();
+
+        myEditor.putInt("SCORE", puntaje_numero);
+        myEditor.commit();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 }
 

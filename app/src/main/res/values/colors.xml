@@ -9,4 +9,5 @@
     <color name="colorincorrect">#F47665</color>
     <color name="colorblack">#000</color>
     <color name="color_gris">#D1CFCE</color>
+    <color name="color_white">#fff</color>
 </resources>
