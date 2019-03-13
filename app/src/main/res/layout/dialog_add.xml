@@ -1,39 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:touchscreenBlocksFocus="true"
-    tools:context=".ActividadCanje">
-    <RelativeLayout
-        android:id="@+id/relLayout2"
+    android:fillViewport="true">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:background="#3D84F8"
-        android:transitionGroup="true"
-        android:gravity="top"
-        android:padding="10dp">
+        android:layout_height="wrap_content"
+        android:touchscreenBlocksFocus="true"
+        tools:context=".ActividadCanje">
 
-        <TextView
-            android:id="@+id/heading"
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:id="@+id/relLayout2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Add Marker!!"
-            android:textColor="#000"
-            android:textSize="18sp" />
+            android:background="#3D84F8"
+            android:gravity="top"
+            android:padding="10dp"
+            android:transitionGroup="true">
 
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/heading"
-            android:gravity="center"
-            android:hint="Description"
-            android:textColor="#000"
-            android:textSize="15sp" />
+            <TextView
+                android:id="@+id/heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:text="QR CODE"
+                android:textColor="#000"
+                android:textSize="40dp" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/heading"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:hint="With this code you can make exchanges in the icesi shop"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/qrCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text"
+                android:layout_centerHorizontal="true"
+                android:background="@mipmap/ic_return_" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
-
-</RelativeLayout>
+</ScrollView>

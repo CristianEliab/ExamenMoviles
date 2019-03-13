@@ -83,7 +83,7 @@ public class MapsMain extends FragmentActivity implements OnMapReadyCallback, Go
         manager = (LocationManager) getSystemService(LOCATION_SERVICE);
         getLocationPermission();
         visible = false;
-        puntaje_numero = 1000;
+        puntaje_numero = 0;
         metodos();
     }
 
@@ -92,7 +92,7 @@ public class MapsMain extends FragmentActivity implements OnMapReadyCallback, Go
         boton_acciones.setOnClickListener(this);
 
         puntaje = findViewById(R.id.puntaje_global);
-        puntaje.setText("Puntaje: " + puntaje_numero);
+        puntaje.setText("Score: " + puntaje_numero);
     }
 
     private void contruirRectangulos() {
@@ -248,12 +248,12 @@ public class MapsMain extends FragmentActivity implements OnMapReadyCallback, Go
                 && posicion.latitude >= RECT_4_4.latitude
                 && posicion.longitude >= RECT_4_1.longitude
                 && posicion.longitude <= RECT_4_4.longitude) {
-            encontro_biblioteca = true;
-            dificultad = true;
+            encontro_edificio = true;
+            dificultad = false;
         }
-        if (encontro_biblioteca) {
+        if (encontro_edificio) {
             boton_acciones.setVisibility(View.VISIBLE);
-            boton_acciones.setText("Canjear");
+            boton_acciones.setText("Questions");
         } else {
             boton_acciones.setVisibility(View.GONE);
         }
@@ -269,7 +269,7 @@ public class MapsMain extends FragmentActivity implements OnMapReadyCallback, Go
         }
         if (encontro_edificio) {
             boton_acciones.setVisibility(View.VISIBLE);
-            boton_acciones.setText("Preguntas");
+            boton_acciones.setText("Questions");
         } else {
             boton_acciones.setVisibility(View.GONE);
         }
@@ -286,7 +286,7 @@ public class MapsMain extends FragmentActivity implements OnMapReadyCallback, Go
         }
         if (encontro_edificio) {
             boton_acciones.setVisibility(View.VISIBLE);
-            boton_acciones.setText("Preguntas");
+            boton_acciones.setText("Questions");
         } else {
             boton_acciones.setVisibility(View.GONE);
         }
@@ -302,7 +302,7 @@ public class MapsMain extends FragmentActivity implements OnMapReadyCallback, Go
         }
         if (encontro_biblioteca) {
             boton_acciones.setVisibility(View.VISIBLE);
-            boton_acciones.setText("Canjear");
+            boton_acciones.setText("Exchange");
         } else {
             boton_acciones.setVisibility(View.GONE);
         }
@@ -397,9 +397,9 @@ public class MapsMain extends FragmentActivity implements OnMapReadyCallback, Go
         // check if the request code is same as what is passed  here it is 2
         if (requestCode == 2) {
             String message = data.getStringExtra("PUNTAJE_GLOBAL");
-            puntaje_numero = Integer.parseInt(message);
+            this.puntaje_numero = Integer.parseInt(message);
             puntaje.setText("");
-            puntaje.setText("Puntaje: " + message);
+            puntaje.setText("Questions: " + message);
         }
     }
 

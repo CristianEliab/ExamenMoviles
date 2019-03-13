@@ -23,7 +23,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="80dp"
             android:gravity="center"
-            android:text="ACTIVIDAD PREGUNTAS"
+            android:text="Questions Activity"
             android:textColor="#fff"
             android:textSize="20dp" />
 
@@ -35,7 +35,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:gravity="center"
-            android:text="Pregunta: "
+            android:text="Question: "
             android:textColor="#fff"
             android:textSize="18dp" />
 
@@ -47,7 +47,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:gravity="center"
-            android:text="Puntos: "
+            android:text="Score: "
             android:textColor="#fff"
             android:textSize="12dp" />
 
@@ -113,7 +113,7 @@
             android:background="@color/colorcorrect"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:hint="RESPONDER"
+            android:hint="ANSWER"
             />
 
         <ImageView

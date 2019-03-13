@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="ACTIVIDAD CANJE"
+        android:text="Exchange Activity"
         android:textSize="20dp"
         android:textColor="#fff"
         android:layout_marginTop="80dp"/>
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="Puntos: "
+        android:text="Score: "
         android:textSize="18dp"
         android:textColor="#fff"
         android:layout_below="@+id/titulo"
@@ -86,7 +86,7 @@
         android:id="@+id/boton_eleccion"
         android:layout_below="@+id/respuestas"
         android:layout_centerHorizontal="true"
-        android:hint="CANJEAR"
+        android:hint="Exchange"
         android:background="@color/colorcorrect"/>
 
     <ImageView

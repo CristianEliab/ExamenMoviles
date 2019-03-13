@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Puntaje: "
+            android:text="Score: "
             android:textColor="@color/colorblack"
             android:id="@+id/puntaje_global"
             android:layout_marginTop="20dp"

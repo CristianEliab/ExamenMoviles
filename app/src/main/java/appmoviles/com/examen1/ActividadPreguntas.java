@@ -94,7 +94,7 @@ public class ActividadPreguntas extends AppCompatActivity implements View.OnClic
         generarActividad();
     }
 
-    private void generarActividad() {
+    private void refreshActividad(){
         int temp = variable_puntos;
         Intent datos = getIntent();
         // Inicializar los puntos
@@ -102,7 +102,7 @@ public class ActividadPreguntas extends AppCompatActivity implements View.OnClic
         variable_puntos = Integer.parseInt(datos.getExtras().getString("PUNTAJE"));
         temp = temp - variable_puntos ;
         variable_puntos = variable_puntos + temp;
-        puntos.setText("Puntos: " + variable_puntos);
+        puntos.setText("Score: " + variable_puntos);
 
         imagen_respuesta = findViewById(R.id.imagen_preguntas);
 
@@ -119,7 +119,30 @@ public class ActividadPreguntas extends AppCompatActivity implements View.OnClic
         }else{
             imagen_respuesta.setImageResource(R.mipmap.ic_easy);
         }
+    }
 
+    private void generarActividad() {
+        Intent datos = getIntent();
+        // Inicializar los puntos
+        String dificultad = datos.getExtras().getString("dificultad");
+        variable_puntos = Integer.parseInt(datos.getExtras().getString("PUNTAJE"));
+        puntos.setText("Score: " + variable_puntos);
+
+        imagen_respuesta = findViewById(R.id.imagen_preguntas);
+
+        if (dificultad.equals("100")) {
+            generarPreguntasDificiles();
+            dificil = true;
+        } else {
+            generarPreguntasFaciles();
+            dificil = false;
+        }
+
+        if(dificil){
+            imagen_respuesta.setImageResource(R.mipmap.ic_problem);
+        }else{
+            imagen_respuesta.setImageResource(R.mipmap.ic_easy);
+        }
     }
 
 
@@ -167,7 +190,7 @@ public class ActividadPreguntas extends AppCompatActivity implements View.OnClic
         }
 
         pregunta = "(" + numero1 + operador1 + numero2 + ")" + operador2 + numero3;
-        pregunta_texto.setText("Pregunta: " + "\n" + pregunta);
+        pregunta_texto.setText("Question: " + "\n" + pregunta);
 
         randomRespuestas(numero1, numero2, 0);
     }
@@ -196,7 +219,7 @@ public class ActividadPreguntas extends AppCompatActivity implements View.OnClic
         }
 
         pregunta = "(" + numero1 + operador1 + numero2 + ")";
-        pregunta_texto.setText("Pregunta: " + "\n" + pregunta);
+        pregunta_texto.setText("Question: " + "\n" + pregunta);
 
         randomRespuestas(numero1, numero2, 0);
     }
@@ -232,7 +255,7 @@ public class ActividadPreguntas extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         if (v.equals(refresh)) {
-            generarActividad();
+            refreshActividad();
             desbloquearRespuesta();
             configuracionNormal();
         } else if (v.equals(return_)) {
@@ -274,11 +297,11 @@ public class ActividadPreguntas extends AppCompatActivity implements View.OnClic
         if (dificil) {
             variable_puntos = variable_puntos + puntos_correcto_dificil;
             puntos.setText("");
-            puntos.setText("Puntos: "+variable_puntos + "");
+            puntos.setText("Score: "+variable_puntos + "");
         } else {
             variable_puntos = variable_puntos + puntos_correcto_faciles;
             puntos.setText("");
-            puntos.setText("Puntos: "+variable_puntos + "");
+            puntos.setText("Score: "+variable_puntos + "");
         }
     }
 
@@ -303,4 +326,13 @@ public class ActividadPreguntas extends AppCompatActivity implements View.OnClic
         TextView puntos = findViewById(R.id.puntos);
         puntos.setTextColor(getResources().getColor(R.color.colorblack));
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.putExtra("PUNTAJE_GLOBAL", "" + variable_puntos);
+        setResult(2, intent);
+        finish();//finishing activity
+    }
+
 }

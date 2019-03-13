@@ -10,15 +10,16 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class ActividadCanje extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String NOMBRE_ARTICULO_1 = "Lapicero Icesi";
-    private static final String NOMBRE_ARTICULO_2 = "Cuaderno";
-    private static final String NOMBRE_ARTICULO_3 = "Libreta Icesi";
-    private static final String NOMBRE_ARTICULO_4 = "Camiseta Icesi";
-    private static final String NOMBRE_ARTICULO_5 = "Saco Icesi";
+    private static final String NOMBRE_ARTICULO_1 = "Icesi Pencil";
+    private static final String NOMBRE_ARTICULO_2 = "Notebook";
+    private static final String NOMBRE_ARTICULO_3 = "Icesi Notepad";
+    private static final String NOMBRE_ARTICULO_4 = "Icesi T-shirt";
+    private static final String NOMBRE_ARTICULO_5 = "Icesi Coat";
 
     private static final int VALOR_ARTICULO_1 = 20;
     private static final int VALOR_ARTICULO_2 = 30;
@@ -52,12 +53,14 @@ public class ActividadCanje extends AppCompatActivity implements View.OnClickLis
         String dificultad = datos.getExtras().getString("dificultad");
         variable_puntos = Integer.parseInt(datos.getExtras().getString("PUNTAJE"));
 
-        puntos.setText("Puntos: " + variable_puntos);
+        puntos.setText("Score: " + variable_puntos);
     }
 
     private void init() {
 
         puntos = findViewById(R.id.puntaje);
+
+        grupoArticulos = findViewById(R.id.respuestas);
 
         articulo1 = findViewById(R.id.articulo1);
         articulo1.setText(NOMBRE_ARTICULO_1);
@@ -89,12 +92,57 @@ public class ActividadCanje extends AppCompatActivity implements View.OnClickLis
             setResult(2, intent);
             finish();//finishing activity
         }else{
-            // Dialogo del Código
-            DialogFragment dialog = new Dialogo();
-            String lugar = "";
-            ((Dialogo) dialog).lugarCercano = lugar;
-            dialog.show(getSupportFragmentManager(), "MyCustomDialog");
+            int radioButtonID = grupoArticulos.getCheckedRadioButtonId();
+            RadioButton radioButton = grupoArticulos.findViewById(radioButtonID);
+            if(radioButton != null){
+                String respuesta_cliente = radioButton.getText().toString();
+                //
+                obtenerPuntos(respuesta_cliente);
+                // Dialogo del Código
+                DialogFragment dialog = new Dialogo();
+                String lugar = "";
+                ((Dialogo) dialog).inputvalue = respuesta_cliente;
+                ((Dialogo) dialog).puntos = variable_puntos;
+                dialog.show(getSupportFragmentManager(), "MyCustomDialog");
+            }
+          else{
+                Toast.makeText(this, "Select one product, please!", Toast.LENGTH_SHORT).show();
+            }
         }
+    }
+
+    private void obtenerPuntos(String respuesta_cliente) {
+        switch (respuesta_cliente){
+            case NOMBRE_ARTICULO_1:
+                variable_puntos = variable_puntos - VALOR_ARTICULO_1;
+                puntos.setText("Score: " +variable_puntos);
+                break;
+            case NOMBRE_ARTICULO_2:
+                variable_puntos = variable_puntos - VALOR_ARTICULO_2;
+                puntos.setText("Score: " +variable_puntos);
+                break;
+            case NOMBRE_ARTICULO_3:
+                variable_puntos = variable_puntos - VALOR_ARTICULO_3;
+                puntos.setText("Score: " +variable_puntos);
+                break;
+            case NOMBRE_ARTICULO_4:
+                variable_puntos = variable_puntos - VALOR_ARTICULO_4;
+                puntos.setText("Score: " +variable_puntos);
+                break;
+            case NOMBRE_ARTICULO_5:
+                variable_puntos = variable_puntos - VALOR_ARTICULO_5;
+                puntos.setText("Score: " +variable_puntos);
+                break;
+        }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.putExtra("PUNTAJE_GLOBAL", "" + variable_puntos);
+        setResult(2, intent);
+        finish();//finishing activity
     }
 
 }
